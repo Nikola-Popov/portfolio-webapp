@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Forum";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Forum">
+    <title>Forum</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+</head>
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-md-10 mx-auto col-lg-5">
+            <h1 class="display-6 fw-bold lh-1 mb-3">What's on your mind?</h1>
+            <form method="post" action="">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nameInput" name="AuthorName" placeholder="Name">
+                </div>
+                <textarea class="form-control" id="postInput" name="Message" rows="10"></textarea>
+                <br />
+                <button class="w-50 btn btn-primary" type="submit">Post</button>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="d-flex justify-content-center">
+        <div class="col-md-8">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                @foreach (var entry in ViewBag.Entries)
+                {
+                <section class="contact">
+                    <header>
+                        <h3>@entry.Message</h3>
+                    </header>
+                    <p>
+                        Posted by <b>@entry.AuthorName</b> on @entry.PostDate.ToLongDateString()
+                    </p>
+                    <br />
+
+                    <p>
+                        @{
+                            bool hasPermission =
+                            (bool)ViewData["hasPermission"];
+                        }
+                        @if (hasPermission)
+                        {
+
+                                <div class="col">
+                                    @using (Html.BeginForm("Delete", "Post", FormMethod.Post))
+                                    {
+                                        <button class="btn btn-danger" name="PostId" value="@entry.Id" type="submit">Delete</button>
+                                    }
+                                </div>
+                            }
+                        
+                       
+
+                    </p>
+
+                   
+                    <hr />
+                </section>
+                }
+            </div>
+        </div>
+    </div>
+   
+</div>

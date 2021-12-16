@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Portfolio</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+      
+
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <ul class="nav nav-pills">
+                <li class="nav-item">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="nav-item">@Html.ActionLink("About", "About", "Home")</li>
+                <li class="nav-item">@Html.ActionLink("Projects", "Projects", "Home")</li>
+                <li class="nav-item">@Html.ActionLink("Forum", "Forum", "Post")</li>
+                <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                @Html.Partial("_LoginPartial")
+            </ul>
+        </header>
+
+    </div>
+    @RenderBody()
+    <div class="container">
+
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <span class="text-muted">&copy; 2021 Portfolio</span>
+            </div>
+
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
